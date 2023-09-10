@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3010/';
+const API_URL = 'https://ufc-crud.onrender.com/';
+//const API_URL = 'http://localhost:3029/';
 
 function FighterPage() {
   const [fighters, setFighters] = useState([]);

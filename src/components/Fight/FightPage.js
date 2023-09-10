@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3010/';
+
+const API_URL = 'https://ufc-crud.onrender.com/';
+//const API_URL = 'http://localhost:3029/';
 
 function FightPage() {
   const [fights, setFights] = useState([]);
   const [newFight, setNewFight] = useState({
-    id: '',
-    lutador1Id: '',
-    lutador2Id: '',
-    eventoId: '',
-    cardId: '',
+    id: 0,
+    idLutador1: 0,
+    idLutador2: 0,
+    idEvento: 0,
+    idCard: 0,
   });
   const [editFight, setEditFight] = useState({
-    id: '',
-    lutador1Id: '',
-    lutador2Id: '',
-    eventoId: '',
-    cardId: '',
+    id: 0,
+    idLutador1: 0,
+    idLutador2: 0,
+    idEvento: 0,
+    idCard: 0,
   });
   const [selectedFight, setSelectedFight] = useState(null);
 
@@ -72,11 +74,11 @@ function FightPage() {
 
         // Reset the newFight object
         setNewFight({
-          id: '',
-          lutador1Id: '',
-          lutador2Id: '',
-          eventoId: '',
-          cardId: '',
+          id: 0,
+          idLutador1: 0,
+          idLutador2: 0,
+          idEvento: 0,
+          idCard: 0,
         });
       })
       .catch((error) => {
@@ -99,11 +101,11 @@ function FightPage() {
         });
         setFights(updatedFights);
         setEditFight({
-          id: '', // Reset the id to empty
-          lutador1Id: '',
-          lutador2Id: '',
-          eventoId: '',
-          cardId: '',
+          id: 0, // Reset the id to 0
+          idLutador1: 0,
+          idLutador2: 0,
+          idEvento: 0,
+          idCard: 0,
         });
         setSelectedFight(null);
       })
@@ -132,8 +134,8 @@ function FightPage() {
       <div className="mb-4">
         <select
           className="border border-gray-400 rounded px-2 py-1"
-          value={newFight.eventoId}
-          onChange={(e) => setNewFight({ ...newFight, eventoId: e.target.value })}
+          value={newFight.idEvento}
+          onChange={(e) => setNewFight({ ...newFight, idEvento: e.target.value })}
         >
           <option value="">Select Event</option>
           {eventsList.map((event) => (
@@ -144,8 +146,8 @@ function FightPage() {
         </select>
         <select
           className="border border-gray-400 rounded px-2 py-1 ml-2"
-          value={newFight.cardId}
-          onChange={(e) => setNewFight({ ...newFight, cardId: e.target.value })}
+          value={newFight.idCard}
+          onChange={(e) => setNewFight({ ...newFight, idCard: e.target.value })}
         >
           <option value="">Select Card</option>
           {cardsList.map((card) => (
@@ -156,8 +158,8 @@ function FightPage() {
         </select>
         <select
           className="border border-gray-400 rounded px-2 py-1 ml-2"
-          value={newFight.lutador1Id}
-          onChange={(e) => setNewFight({ ...newFight, lutador1Id: e.target.value })}
+          value={newFight.idLutador1}
+          onChange={(e) => setNewFight({ ...newFight, idLutador1: e.target.value })}
         >
           <option value="">Select Fighter 1</option>
           {fightersList.map((fighter) => (
@@ -168,8 +170,8 @@ function FightPage() {
         </select>
         <select
           className="border border-gray-400 rounded px-2 py-1 ml-2"
-          value={newFight.lutador2Id}
-          onChange={(e) => setNewFight({ ...newFight, lutador2Id: e.target.value })}
+          value={newFight.idLutador2}
+          onChange={(e) => setNewFight({ ...newFight, idLutador2: e.target.value })}
         >
           <option value="">Select Fighter 2</option>
           {fightersList.map((fighter) => (
@@ -191,8 +193,8 @@ function FightPage() {
         <div className="mb-4">
           <select
             className="border border-gray-400 rounded px-2 py-1"
-            value={editFight.eventoId}
-            onChange={(e) => setEditFight({ ...editFight, eventoId: e.target.value })}
+            value={editFight.idEvento}
+            onChange={(e) => setEditFight({ ...editFight, idEvento: e.target.value })}
           >
             <option value="">Select Event</option>
             {eventsList.map((event) => (
@@ -203,8 +205,8 @@ function FightPage() {
           </select>
           <select
             className="border border-gray-400 rounded px-2 py-1 ml-2"
-            value={editFight.cardId}
-            onChange={(e) => setEditFight({ ...editFight, cardId: e.target.value })}
+            value={editFight.idCard}
+            onChange={(e) => setEditFight({ ...editFight, idCard: e.target.value })}
           >
             <option value="">Select Card</option>
             {cardsList.map((card) => (
@@ -215,8 +217,8 @@ function FightPage() {
           </select>
           <select
             className="border border-gray-400 rounded px-2 py-1 ml-2"
-            value={editFight.lutador1Id}
-            onChange={(e) => setEditFight({ ...editFight, lutador1Id: e.target.value })}
+            value={editFight.idLutador1}
+            onChange={(e) => setEditFight({ ...editFight, idLutador1: e.target.value })}
           >
             <option value="">Select Fighter 1</option>
             {fightersList.map((fighter) => (
@@ -227,8 +229,8 @@ function FightPage() {
           </select>
           <select
             className="border border-gray-400 rounded px-2 py-1 ml-2"
-            value={editFight.lutador2Id}
-            onChange={(e) => setEditFight({ ...editFight, lutador2Id: e.target.value })}
+            value={editFight.idLutador2}
+            onChange={(e) => setEditFight({ ...editFight, idLutador2: e.target.value })}
           >
             <option value="">Select Fighter 2</option>
             {fightersList.map((fighter) => (
