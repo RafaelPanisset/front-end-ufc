@@ -1,5 +1,5 @@
-// LoginPage.js
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -63,6 +63,9 @@ const LoginPage = () => {
           >
             Sign In
           </button>
+          <Link to="/signup" className="text-gray-600 hover:underline">
+            Create an Account
+          </Link>
         </div>
       </form>
     </div>
