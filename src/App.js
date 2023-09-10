@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import MainPage from './components/MainPage';
+import CardSection from './components/Card/CardPage';
+import EventSection from './components/Event/EventPage';
+import FighterPage from './components/Fighter/FighterPage';
+import FightPage from './components/Fight/FightPage';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NavBar /> {/* Render the NavBar outside of Routes */}
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/cards" element={<CardSection />} />
+        <Route path="/events" element={<EventSection />} />
+        <Route path="/fighters" element={<FighterPage />} />
+        <Route path="/fights" element={<FightPage />} />
+      </Routes>
     </div>
   );
 }
