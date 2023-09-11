@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import CardSection from './components/Card/CardPage';
@@ -10,20 +10,20 @@ import LoginPage from './components/Auth/LoginPage';
 import SignupPage from './components/Auth/SignupPage';
 
 function App() {
-  // Assume you have a state that tracks whether the user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Check if a token exists in localStorage
+  const hasToken = !!localStorage.getItem("token");
 
   return (
     <div>
-      {isLoggedIn && <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} 
+      {hasToken && <NavBar />} 
       <Routes>
-        <Route path="/" element={isLoggedIn ? <MainPage /> : <Navigate to="/login" />} />
-        <Route path="/cards" element={isLoggedIn ? <CardSection /> : <Navigate to="/login" />} />
-        <Route path="/events" element={isLoggedIn ? <EventSection /> : <Navigate to="/login" />} />
-        <Route path="/fighters" element={isLoggedIn ? <FighterPage /> : <Navigate to="/login" />} />
-        <Route path="/fights" element={isLoggedIn ? <FightPage /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage  setIsLoggedIn={setIsLoggedIn}  />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/" element={hasToken ? <MainPage /> : <Navigate to="/login" />} />
+        <Route path="/cards" element={hasToken ? <CardSection /> : <Navigate to="/login" />} />
+        <Route path="/events" element={hasToken ? <EventSection /> : <Navigate to="/login" />} />
+        <Route path="/fighters" element={hasToken ? <FighterPage /> : <Navigate to="/login" />} />
+        <Route path="/fights" element={hasToken ? <FightPage /> : <Navigate to="/login" />} />
+        <Route path="/login" element={!hasToken ? <LoginPage /> : <Navigate to="/cards" />} />
+        <Route path="/signup" element={!hasToken ? <SignupPage /> : <Navigate to="/cards" />} />
       </Routes>
     </div>
   );
