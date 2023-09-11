@@ -40,6 +40,7 @@ const LoginPage = () => {
       }
     })
     .catch((error) => {
+      window.alert(error);
       console.error('Error creating card:', error);
     });
   };
