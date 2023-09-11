@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const API_URL = 'https://ufc-crud.onrender.com/'; // Import useHistory
 //const API_URL = 'http://localhost:3034/'; // Import useHistory
-const LoginPage = ({ setIsLoggedIn }) => {
+const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -33,10 +33,9 @@ const LoginPage = ({ setIsLoggedIn }) => {
     .post(`${API_URL}usuarios/logar`, info)
     .then((response) => {
       if (response) {
-        setIsLoggedIn(true); // Set isLoggedIn to true
-        console.log(setIsLoggedIn);
+        localStorage.setItem("token", response.data); 
+        window.location.replace('/cards');
         // Redirect to the login page after successfully creating an account
-        navigate('/cards'); // Use navigate instead of history.push
       }
       else {
         window.alert("Problema ao logar!");
@@ -52,14 +51,14 @@ const LoginPage = ({ setIsLoggedIn }) => {
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
+            User name
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
             type="text"
             name="email"
-            placeholder="Email"
+            placeholder="User name"
             value={formData.email}
             onChange={handleChange}
             required

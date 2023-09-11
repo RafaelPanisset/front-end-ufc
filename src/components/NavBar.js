@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
+const NavBar = () => {
 
   const handleLogout = () => {
     // Set isLoggedIn to false when the "Logout" button is clicked
@@ -55,9 +55,6 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
             onClick={handleLogout} // Call handleLogout on button click
           >
             Logout
-        </button>
-        <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded">
-          Profile
         </button>
       </div>
     </nav>
