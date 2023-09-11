@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-const LoginPage = () => {
+//const API_URL = 'https://ufc-crud.onrender.com/'; // Import useHistory
+const API_URL = 'http://localhost:3034/'; // Import useHistory
+const LoginPage = (setIsLoggedIn) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +25,26 @@ const LoginPage = () => {
     // You can add your authentication logic here.
     // Typically, you would make an API request to your backend.
     // For simplicity, we'll just log the form data for now.
-    console.log('Form Data:', formData);
+    let info = {
+      username: formData.email,
+      password: formData.password
+    }
+    axios
+    .post(`${API_URL}usuarios/logar`, info)
+    .then((response) => {
+      if (response) {
+        setIsLoggedIn(true); // Set isLoggedIn to true
+
+        // Redirect to the login page after successfully creating an account
+        navigate('/cards'); // Use navigate instead of history.push
+      }
+      else {
+        window.alert("Problema ao logar!");
+      }
+    })
+    .catch((error) => {
+      console.error('Error creating card:', error);
+    });
   };
 
   return (

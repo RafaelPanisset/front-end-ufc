@@ -22,7 +22,7 @@ function App() {
         <Route path="/events" element={isLoggedIn ? <EventSection /> : <Navigate to="/login" />} />
         <Route path="/fighters" element={isLoggedIn ? <FighterPage /> : <Navigate to="/login" />} />
         <Route path="/fights" element={isLoggedIn ? <FightPage /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage  setIsLoggedIn={setIsLoggedIn}  />} />
         <Route path="/signup" element={<SignupPage />} />
       </Routes>
     </div>
