@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div>
-      {isLoggedIn && <NavBar />} 
+      {isLoggedIn && <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} 
       <Routes>
         <Route path="/" element={isLoggedIn ? <MainPage /> : <Navigate to="/login" />} />
         <Route path="/cards" element={isLoggedIn ? <CardSection /> : <Navigate to="/login" />} />

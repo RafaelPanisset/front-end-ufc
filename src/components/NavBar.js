@@ -1,7 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
+
+  const handleLogout = () => {
+    // Set isLoggedIn to false when the "Logout" button is clicked
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav className="bg-blue-500 p-4 text-white flex justify-between items-center">
       <ul className="flex space-x-4">
@@ -43,8 +49,11 @@ const NavBar = () => {
         </li>
       </ul>
       <div className="space-x-4">
-        <button className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
-          Logout
+        <button
+            className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"
+            onClick={handleLogout} // Call handleLogout on button click
+          >
+            Logout
         </button>
         <button className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded">
           Profile
