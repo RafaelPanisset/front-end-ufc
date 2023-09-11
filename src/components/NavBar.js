@@ -5,7 +5,8 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     // Set isLoggedIn to false when the "Logout" button is clicked
-    setIsLoggedIn(false);
+    localStorage.removeItem("token");
+    window.location.replace('/login');
   };
 
   return (
