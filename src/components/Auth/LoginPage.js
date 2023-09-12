@@ -40,7 +40,7 @@ const LoginPage = () => {
       }
     })
     .catch((error) => {
-      window.alert(error);
+      window.alert("Usuário não registrado!");
       console.error('Error creating card:', error);
     });
   };
